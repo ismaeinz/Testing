@@ -5,18 +5,18 @@ package com.example.testing.app
  * Date: 09 Aug 2025 at 19:44
  */
 class BagApi {
-    fun getBagSize(id: Int): String {
+    suspend fun getBagSize(id: Int, size: String): String {
         return when (id) {
             1 -> return "S"
             2 -> return "M"
             3 -> return "L"
             else -> "S"
-        }
+        } + size
     }
 
     class PassengerRepository(val api: BagApi) {
-        fun getPassengerBagSize(id: Int): String {
-            return api.getBagSize(id)
+        suspend fun getPassengerBagSize(id: Int, size: String): String {
+            return api.getBagSize(id, size)
         }
     }
 }
